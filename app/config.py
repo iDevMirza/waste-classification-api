@@ -15,5 +15,5 @@ CLASSES = [
 ]
 
 IMAGE_SIZE = 224
-MODEL_NAME = "efficientvit"
-MODEL_VERSION = "efficientvit_v1"
+MODEL_NAME = "efficientvit_b0"
+MODEL_VERSION = "efficientvit_b0_v1"
