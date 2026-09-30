@@ -1,7 +1,7 @@
 import torch
 import timm
 
-from app.config import Config as cfg
+from app.config import (CLASSES, MODEL_PATH, MODEL_NAME)
 
 class WasteClassifierModel:
     def __init__(self):
@@ -12,9 +12,9 @@ class WasteClassifierModel:
 
         print(f"Using device: {self.device}")
 
-        self.model = timm.create_model(cfg.MODEL_NAME, pretrained=False, num_classes=len(cfg.CLASSES))
+        self.model = timm.create_model(MODEL_NAME, pretrained=False, num_classes=len(CLASSES))
 
-        checkpoint = torch.load(cfg.MODEL_PATH, map_location=self.device)
+        checkpoint = torch.load(MODEL_PATH, map_location=self.device)
 
         if isinstance(checkpoint, dict):
             if "state_dict" in checkpoint:
@@ -34,7 +34,7 @@ class WasteClassifierModel:
         self.model.to(self.device)
 
         self.model.eval()
-        print(f"Model {cfg.MODEL_NAME} loaded successfully with {len(cfg.CLASSES)} classes.")
+        print(f"Model {MODEL_NAME} loaded successfully with {len(CLASSES)} classes.")
 
 
     def predict(self, image_tensor):
@@ -49,11 +49,11 @@ class WasteClassifierModel:
 
         confidence = confidence.item()
 
-        predicted_class = cfg.CLASSES[predicted_index]
+        predicted_class = CLASSES[predicted_index]
 
         all_probabilities = {}
 
-        for index, class_name in enumerate(cfg.CLASSES):
+        for index, class_name in enumerate(CLASSES):
             all_probabilities[class_name] = float(probabilities[0][index].item())
 
         return {
