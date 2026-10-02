@@ -1,7 +1,7 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_PATH = BASE_DIR / "weights" / "EfficientViT.pt"
+MODEL_PATH = BASE_DIR / "weights" / "EfficientViT_Base.pt"
 DATASET_PATH = BASE_DIR / "dataset"
 METADATA_FILE = BASE_DIR / "metadata.csv"
 
