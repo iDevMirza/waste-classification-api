@@ -5,6 +5,7 @@ from app.config import (CLASSES, MODEL_VERSION,)
 from app.preprocessing import preprocess_image
 from app.model import model_classifier
 from app.dataset_manager import (save_image, initialize_dataset, initialize_metadata, get_dataset_statistics)
+import time
 
 app = FastAPI(
     title="Waste Classification API",
@@ -32,30 +33,34 @@ def health_check():
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
-    if not file.content_type:
-        raise HTTPException(status_code=400, detail="Invalid file type. Please upload an image.")
+    start = time.perf_counter()
 
-    if not file.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="Invalid file type. Please upload an image.")
+    print("1. Prediction request received", flush=True)
 
     contents = await file.read()
+    print(f"2. Received {len(contents)} bytes", flush=True)
 
-    try:
-        image = Image.open(BytesIO(contents)).convert("RGB")
-        image.load()  # Ensure the image is fully loaded
-    except UnidentifiedImageError:
-        raise HTTPException(status_code=400, detail="Invalid image file. Please upload a valid image.")
+    image = Image.open(BytesIO(contents))
+    image.load()
+
+    print("3. Image decoded", flush=True)
 
     image_tensor = preprocess_image(image)
-    prediction_result = model_classifier.predict(image_tensor)
+    print("4. Image preprocessed", flush=True)
+
+    result = model_classifier.predict(image_tensor)
+    print("5. Model prediction completed", flush=True)
+
+    elapsed = time.perf_counter() - start
+    print(f"6. Total time: {elapsed:.2f} seconds", flush=True)
 
     return {
         "success": True,
         "model": MODEL_VERSION,
-        "prediction": prediction_result["predicted_class"],
-        "class_index": prediction_result["predicted_class_index"],
-        "confidence": prediction_result["confidence"],
-        "probabilities": prediction_result["all_probabilities"],
+        "prediction": result["predicted_class"],
+        "class_index": result["predicted_class_index"],
+        "confidence": result["confidence"],
+        "probabilities": result["all_probabilities"],
     }
 
 @app.post("/dataset/save")
