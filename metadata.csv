@@ -1,1 +1,4 @@
 filename,model_prediction,confidence,human_label,timestamp,model_version
+metal_000001.jpg,metal,0.8287625908851624,metal,2026-10-12T22:53:00.944595+00:00,efficientvit_b0_v1
+plastic_000001.jpg,plastic,0.8216126561164856,plastic,2026-10-12T22:53:46.008824+00:00,efficientvit_b0_v1
+plastic_000002.jpg,plastic,0.552795946598053,plastic,2026-10-12T23:03:53.509486+00:00,efficientvit_b0_v1
