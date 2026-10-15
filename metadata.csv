@@ -2,3 +2,7 @@ filename,model_prediction,confidence,human_label,timestamp,model_version
 metal_000001.jpg,metal,0.8287625908851624,metal,2026-10-12T22:53:00.944595+00:00,efficientvit_b0_v1
 plastic_000001.jpg,plastic,0.8216126561164856,plastic,2026-10-12T22:53:46.008824+00:00,efficientvit_b0_v1
 plastic_000002.jpg,plastic,0.552795946598053,plastic,2026-10-12T23:03:53.509486+00:00,efficientvit_b0_v1
+metal_000002.jpg,cardboard,0.742376446723938,metal,2026-10-13T14:30:58.214730+00:00,efficientvit_b0_v1
+paper_000001.jpg,paper,0.9969214797019958,paper,2026-10-13T14:33:31.443520+00:00,efficientvit_b0_v1
+paper_000002.jpg,paper,0.9978631138801575,paper,2026-10-13T14:34:33.250731+00:00,efficientvit_b0_v1
+metal_000003.jpg,cardboard,0.8805524706840515,metal,2026-10-13T14:37:46.764937+00:00,efficientvit_b0_v1
