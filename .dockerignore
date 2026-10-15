@@ -1,0 +1,56 @@
+
+# Git
+.git
+.gitignore
+.github/
+
+# Python environments
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local datasets and generated images
+dataset/
+datasets/
+uploads/
+temp/
+tmp/
+
+# Notebooks and experiments
+notebooks/
+experiments/
+runs/
+wandb/
+mlruns/
+
+# Logs
+*.log
+logs/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Flutter and other project build files
+build/
+dist/
+
+# Documentation and local test files
+tests/
+docs/
+README.md
